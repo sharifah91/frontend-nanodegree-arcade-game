@@ -1,4 +1,4 @@
-# frontend-nanodegree-arcade-game
+# Arcade Game
 
 ## Opening the game
 1. Download the .zip file of this repository on GitHub.
