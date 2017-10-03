@@ -20,8 +20,8 @@ Enemy.prototype.update = function(dt) {
     this.x += this.speed * dt;
 
     // let enemies go back to the starting point when reaching
-    // the end of the canvas.
-    if (this.x >= 450) {
+    // the end of the canvas (canvas.width).
+    if (this.x >= 505) {
         this.x = 0;
     }
 
@@ -39,7 +39,7 @@ var Player = function(x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
-    this.sprite = 'images/char-boy.png';
+    this.sprite = 'images/char-princess-girl.png';
 };
 
 // This class requires an update(), render() and
