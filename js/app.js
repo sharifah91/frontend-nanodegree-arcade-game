@@ -46,7 +46,7 @@ var Player = function(x, y, speed) {
 // a handleInput() method.
 Player.prototype.update = function() {
 
-}
+};
 
 // Now we need to use render() to draw the player and to display the score
 Player.prototype.render = function() {
@@ -82,12 +82,9 @@ var displayScore = function(playerScore) {
 
 var checkCollision = function(anEnemy) {
     if (
-        player.x + 15 <= anEnemy.x + 90
-        &&
-        player.y + 100 >= anEnemy.y + 100
-        &&
-        player.x + 80 >= anEnemy.x + 26
-        &&
+        player.x + 15 <= anEnemy.x + 90 &&
+        player.y + 100 >= anEnemy.y + 100 &&
+        player.x + 80 >= anEnemy.x + 26 &&
         player.y + 80 <= anEnemy.y + 120) {
         // if the player collide with an enemy it will return it to the starting point
         player.x = 200;
