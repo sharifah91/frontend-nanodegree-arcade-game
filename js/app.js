@@ -26,6 +26,40 @@ Enemy.prototype.update = function(dt) {
     }
 
     // Check if player collide with enemy
+
+    var checkCollision = function(anEnemy) {
+        if (
+            player.x + 15 <= anEnemy.x + 90 &&
+            player.y + 100 >= anEnemy.y + 100 &&
+            player.x + 80 >= anEnemy.x + 26 &&
+            player.y + 80 <= anEnemy.y + 120) {
+            // if the player collide with an enemy it will return it to the starting point
+            player.x = 200;
+            player.y = 500;
+        }
+
+        var increaseEnemies = function(num) {
+            allEnemies.length = 0;
+
+            // push enemies
+            for (var i = 0; i <= num; i++) {
+                var enemy = new Enemy(0, Math.random() * 200 + 50, Math.random() * 250);
+                allEnemies.push(enemy);
+            }
+        };
+        // if the player reached the top of the canvas it will
+        // return it to the starting point, fill the rectangle
+        // on the top of the canvas with white, and increase the score
+        if (player.y + 50 <= 0) {
+            player.x = 200;
+            player.y = 500;
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, 500, 170);
+            score += 1;
+            increaseEnemies(score);
+        }
+        // end of checkCollision() function.
+    };
     checkCollision(this);
 };
 
@@ -46,6 +80,18 @@ var Player = function(x, y, speed) {
 // a handleInput() method.
 Player.prototype.update = function() {
 
+
+
+    // keeps the player inside the canvas
+    if (player.x > 400) {
+        player.x = 400;
+    }
+    if (player.x < 0) {
+        player.x = 0;
+    }
+    if (player.y > 400) {
+        player.y = 400;
+    }
 };
 
 // Now we need to use render() to draw the player and to display the score
@@ -78,51 +124,6 @@ var displayScore = function(playerScore) {
 
     scoreDiv.innerHTML = 'Score: ' + playerScore;
     document.body.insertBefore(scoreDiv, fCanvas[0]);
-};
-
-var checkCollision = function(anEnemy) {
-    if (
-        player.x + 15 <= anEnemy.x + 90 &&
-        player.y + 100 >= anEnemy.y + 100 &&
-        player.x + 80 >= anEnemy.x + 26 &&
-        player.y + 80 <= anEnemy.y + 120) {
-        // if the player collide with an enemy it will return it to the starting point
-        player.x = 200;
-        player.y = 500;
-    }
-
-    var increaseEnemies = function(num) {
-        allEnemies.length = 0;
-
-        // push enemies
-        for (var i = 0; i <= num; i++) {
-            var enemy = new Enemy(0, Math.random() * 200 + 50, Math.random() * 250);
-            allEnemies.push(enemy);
-        }
-    };
-    // if the player reached the top of the canvas it will
-    // return it to the starting point, fill the rectangle
-    // on the top of the canvas with white, and increase the score
-    if (player.y + 50 <= 0) {
-        player.x = 200;
-        player.y = 500;
-        ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, 500, 170);
-        score += 1;
-        increaseEnemies(score);
-    }
-
-    // keeps the player inside the canvas
-    if (player.x > 400) {
-        player.x = 400;
-    }
-    if (player.x < 0) {
-        player.x = 0;
-    }
-    if (player.y > 400) {
-        player.y = 400;
-    }
-    // end of checkCollision() function.
 };
 
 // Now instantiate your objects.
