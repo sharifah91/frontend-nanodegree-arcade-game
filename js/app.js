@@ -26,41 +26,28 @@ Enemy.prototype.update = function(dt) {
     }
 
     // Check if player collide with enemy
-
     var checkCollision = function(anEnemy) {
         if (
-            player.x + 15 <= anEnemy.x + 90 &&
-            player.y + 100 >= anEnemy.y + 100 &&
-            player.x + 80 >= anEnemy.x + 26 &&
-            player.y + 80 <= anEnemy.y + 120) {
+            player.x + 25 <= anEnemy.x + 88 &&
+            player.y + 130 >= anEnemy.y + 90 &&
+            player.x + 73 >= anEnemy.x + 10 &&
+            player.y + 73 <= anEnemy.y + 135) {
             // if the player collide with an enemy it will return it to the starting point
             player.x = 200;
             player.y = 500;
         }
-
-        var increaseEnemies = function(num) {
-            allEnemies.length = 0;
-
-            // push enemies
-            for (var i = 0; i <= num; i++) {
-                var enemy = new Enemy(0, Math.random() * 200 + 50, Math.random() * 250);
-                allEnemies.push(enemy);
-            }
-        };
-        // if the player reached the top of the canvas it will
-        // return it to the starting point, fill the rectangle
-        // on the top of the canvas with white, and increase the score
-        if (player.y + 50 <= 0) {
-            player.x = 200;
-            player.y = 500;
-            ctx.fillStyle = 'white';
-            ctx.fillRect(0, 0, 500, 170);
-            score += 1;
-            increaseEnemies(score);
-        }
-        // end of checkCollision() function.
     };
     checkCollision(this);
+};
+
+var increaseEnemies = function(num) {
+    allEnemies.length = 0;
+
+    // push enemies
+    for (var i = 0; i <= num; i++) {
+        var enemy = new Enemy(0, Math.random() * 200 + 50, Math.random() * 250);
+        allEnemies.push(enemy);
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -80,7 +67,17 @@ var Player = function(x, y, speed) {
 // a handleInput() method.
 Player.prototype.update = function() {
 
-
+    // if the player reached the top of the canvas it will
+    // return it to the starting point, fill the rectangle
+    // on the top of the canvas with white, and increase the score
+    if (this.y + 50 <= 0) {
+        this.x = 200;
+        this.y = 500;
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, 500, 170);
+        score += 1;
+        increaseEnemies(score);
+    }
 
     // keeps the player inside the canvas
     if (this.x > 400) {
