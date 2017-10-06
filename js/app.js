@@ -83,14 +83,14 @@ Player.prototype.update = function() {
 
 
     // keeps the player inside the canvas
-    if (player.x > 400) {
-        player.x = 400;
+    if (this.x > 400) {
+        this.x = 400;
     }
-    if (player.x < 0) {
-        player.x = 0;
+    if (this.x < 0) {
+        this.x = 0;
     }
-    if (player.y > 400) {
-        player.y = 400;
+    if (this.y > 400) {
+        this.y = 400;
     }
 };
 
@@ -104,16 +104,16 @@ Player.prototype.render = function() {
 // we set the amount of the movement for each input
 Player.prototype.handleInput = function(input) {
     if (input == 'left') {
-        this.x -= 40;
+        this.x -= 101;
     }
     if (input == 'up') {
-        this.y -= 40;
+        this.y -= 83;
     }
     if (input == 'right') {
-        this.x += 40;
+        this.x += 101;
     }
     if (input == 'down') {
-        this.y += 40;
+        this.y += 83;
     }
 };
 
